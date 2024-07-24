@@ -28,7 +28,11 @@ export default function LoginPage() {
       await apiRequest("/users/login", "POST", { username, password });
       router.push("/chat-rooms");
     } catch (error) {
-      setError(error.message || "An error occurred during login");
+      if (error instanceof Error) {
+        setError(error.message || "An error occurred during login");
+      } else {
+        setError("An unexpected error occurred");
+      }
     }
   };
 

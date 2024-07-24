@@ -7,6 +7,9 @@ import { Database } from "./database";
 import { UserController } from "./controllers/UserController";
 import { ChatRoomController } from "./controllers/ChatRoomController";
 import { MessageController } from "./controllers/MessageController";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 declare module "express-session" {
   interface Session {
@@ -26,7 +29,7 @@ export class App {
     this.server = http.createServer(this.app);
     this.io = new Server(this.server, {
       cors: {
-        origin: "http://localhost:3001", // 클라이언트 주소
+        origin: process.env.CLIENT_URL, // 클라이언트 주소를 환경 변수로 가져옴
         methods: ["GET", "POST"],
         credentials: true,
       },
@@ -62,7 +65,7 @@ export class App {
     this.app.use(express.json());
     this.app.use(
       cors({
-        origin: "http://localhost:3001",
+        origin: process.env.CLIENT_URL,
         credentials: true,
       }),
     );

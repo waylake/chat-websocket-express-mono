@@ -1,4 +1,4 @@
-}mport sqlite3 from "sqlite3";
+import sqlite3 from "sqlite3";
 import { open, Database as SQLiteDatabase } from "sqlite";
 import path from "path";
 

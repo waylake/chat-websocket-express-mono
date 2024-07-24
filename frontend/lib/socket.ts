@@ -1,9 +1,14 @@
 import { io, Socket } from "socket.io-client";
 
+const SOCKET_IO_URL = process.env.NEXT_PUBLIC_SOCKET_IO_URL;
+
 let socket: Socket;
 
 export const initSocket = () => {
-  socket = io("http://localhost:3000"); // Replace with your backend URL
+  if (!SOCKET_IO_URL) {
+    throw new Error("Socket.io URL is not defined");
+  }
+  socket = io(SOCKET_IO_URL);
   return socket;
 };
 

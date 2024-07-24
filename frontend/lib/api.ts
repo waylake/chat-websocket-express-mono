@@ -1,11 +1,13 @@
-// lib/api.ts
-const API_BASE_URL = "http://localhost:3000/api"; // Replace with your API URL
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export async function apiRequest(
   endpoint: string,
   method: string = "GET",
   data?: any,
 ) {
+  if (!API_BASE_URL) {
+    throw new Error("API base URL is not defined");
+  }
   const url = `${API_BASE_URL}${endpoint}`;
   const options: RequestInit = {
     method,

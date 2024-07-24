@@ -1,6 +1,6 @@
-// src/database.ts
-import sqlite3 from "sqlite3";
+}mport sqlite3 from "sqlite3";
 import { open, Database as SQLiteDatabase } from "sqlite";
+import path from "path";
 
 export class Database {
   private db: SQLiteDatabase | null = null;
@@ -8,7 +8,7 @@ export class Database {
   public async connect(): Promise<void> {
     try {
       this.db = await open({
-        filename: "./database.sqlite",
+        filename: path.join("/tmp", "database.sqlite"),
         driver: sqlite3.Database,
       });
       console.log("Database connected successfully");

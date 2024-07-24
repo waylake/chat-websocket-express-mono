@@ -106,7 +106,7 @@ export class App {
 
   public async start(port: number): Promise<void> {
     await this.initializeDatabase();
-    this.server.listen(port, () => {
+    this.server.listen(port, "0.0.0.0", () => {
       console.log(`Server running on port ${port}`);
     });
   }
